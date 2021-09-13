@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    image: mi-xampp:1.0
+    ports:
+      - "80:80"
+    #Copiar los archivos locales a la ruta
+    volumes:
+      - .:/var/www/html
+    
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: xampp
+      MYSQL_ROOT_PASSWORD: hello1234
+    #Volumen local que hace la referencia a la ruta para poder
+    #persistir la base de datos
+    volumes:
+      - xampp-data:/var/lib/mysql
+
+volumes:
+    xampp-data:
+      driver: local

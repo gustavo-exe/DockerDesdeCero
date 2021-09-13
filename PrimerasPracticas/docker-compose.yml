@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  web:
+    build: .
+    image: hola-docker-1:1.0
+    ports:
+     - 5000:5000
+    environment: 
+     MSG: 'Saludo desde docker compose!'
+    volumes:
+     - .:/app
+  db:
+    image: postgres
+    restart: always
+    environment:
+     POSTGRESS_PASSWORD: example
